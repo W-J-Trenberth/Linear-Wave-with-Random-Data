@@ -90,10 +90,16 @@ def linear_wave_solution(t, u_0, v_0, c = 1, b = 0, a = 0):
     return u,v
 
 def random_initial_data(N,s):
+    '''Using the DST,  randomly generates a funcion of the form 
+    $\sum\limits_{k=1}^{N-2} \frac{g_k}{\langle k\rangle^s}\sin(k\pi x)$
+    where $g_n$ is a sequence of independent identically distributed 
+    random variables.
+    '''
     k = np.arange(1,N-1)
     Ff = np.random.randn(N-2)/((k**2 + 1)**(s/2))
     f = fft.idst(Ff, type = 1)
     
+    #The DST/IDST doesn't include the zeros at the start and end.
     f= np.insert(f, 0, 0)
     f = np.insert(f, len(f), 0)
     
