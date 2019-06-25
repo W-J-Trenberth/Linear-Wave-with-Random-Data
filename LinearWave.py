@@ -90,7 +90,7 @@ def linear_wave_solution(t, u_0, v_0, c = 1, b = 0, a = 0):
     return u,v
 
 def random_initial_data(N,s):
-    k = np.arange(0,N-2)
+    k = np.arange(1,N-1)
     Ff = np.random.randn(N-2)/(k**s+1)
     f = fft.idst(Ff, type = 1)
     
